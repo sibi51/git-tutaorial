@@ -1,0 +1,45 @@
+      pipeline {
+	  
+        agent any
+		
+		environment {
+		  
+		     name = "sibi"
+		     age = 20
+		
+		}
+		parameters {
+		     string(name: 'place', defaultvalue: 'chennai', description: ('where is my place')
+		}
+		stages {
+		
+		   stage('java') {
+		      environment {
+			  colour = "blue"
+			  road = "ttc"
+			}
+			steps {
+			   sh 'java --version'
+			   echo "My Name is ${name}"
+			   echo "I live in ${road}"
+			   echo "my colour is ${colour}"
+			   echo "greeting is ${params.Greeting}"
+			   echo "Build number is ${BUILD_NUMBER}"
+			   echo "job base name is ${JOB_BASE_NAME}"
+			   
+			   
+			}
+		   }
+		   
+		   stage('Terraform') {
+           steps {
+              sh 'terraform version'
+              echo "My Name is ${name}"
+              echo "Job name is ${JOB_NAME}"
+              echo "Workspace path is ${WORKSPACE}"
+			  }
+			}
+		}
+    }
+			  
+
