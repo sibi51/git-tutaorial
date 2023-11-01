@@ -9,7 +9,7 @@
 		
 		}
 		parameters {
-		     string(name: 'place', defaultvalue: 'chennai', description: ('where is my place')
+		     string(name: 'place', defaultvalue: 'chennai', description: 'where is my place')
 		}
 		stages {
 		
