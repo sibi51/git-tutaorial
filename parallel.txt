@@ -1,0 +1,53 @@
+pipeline {
+  
+  agent any
+  
+  environment {
+      name = "Vishnu"
+      age = 16
+  }
+  
+  stages {
+    
+    // this is the first stage with name Java
+    stage('Java') {
+      environment {
+        place = "Chennai"
+        colour = "Blue"
+      }    
+      steps {
+        sh 'java --version'
+        echo "My Name is ${name}"
+        echo "I live in ${place}"
+        echo "Build number is ${BUILD_NUMBER}"
+        echo "Greeting is ${params.Greeting}"
+      }
+    }
+    
+    stage('Parallel Stage')
+    {
+      parallel {
+        stage('One') {
+          steps {
+            sh 'date'
+            sleep time: 10, unit: 'SECONDS'
+            echo "My Name is ${name}"
+            //echo "I live in ${place}"
+            echo "Job name is ${JOB_NAME}"
+            echo "Workspace path is ${WORKSPACE}"
+          }
+        }
+        stage('Two') {
+          steps {
+            sh 'date'
+            sleep time: 5, unit: 'SECONDS'
+            echo "My Name is ${name}"
+            //echo "I live in ${place}"
+            echo "Job name is ${JOB_NAME}"
+            echo "Workspace path is ${WORKSPACE}"
+          }
+        }
+      }
+    }
+  }
+}

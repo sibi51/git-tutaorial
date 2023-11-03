@@ -1,0 +1,96 @@
+pipeline {
+  
+  agent any
+  
+  environment {
+      name = "vishnu"
+      age = 16
+  }
+  
+  parameters {
+    string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+    //string(name: 'Age', defaultValue: '16', description: 'Defining the age')
+  }
+  
+  stages {
+    
+    // this is the first stage with name Java
+    stage('Java') {
+      environment {
+        place = "Chennai"
+        colour = "Blue"
+      }    
+      steps {
+        sh 'java --version'
+        sleep time: 10, unit: 'SECONDS'
+        echo "My Name is ${name}"
+        echo "I live in ${place}"
+        echo "Build number is ${BUILD_NUMBER}"
+        echo "Greeting is ${params.Greeting}"
+      }
+    }
+    
+    stage('Terraform') {
+      steps {
+        sh 'terraform version'
+        echo "My Name is ${name}"
+        //echo "I live in ${place}"
+        echo "Job name is ${JOB_NAME}"
+        echo "Workspace path is ${WORKSPACE}"
+      }
+    }pipeline {
+  
+  agent any
+  
+  environment {
+      name = "Vishnu"
+      age = 16
+  }
+  
+  parameters {
+    string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+    //string(name: 'Age', defaultValue: '16', description: 'Defining the age')
+  }
+  
+  stages {
+    
+    // this is the first stage with name Java
+    stage('Java') {
+      environment {
+        place = "Chennai"
+        colour = "Blue"
+      }    
+      steps {
+        sh 'java --version'
+        //sleep time: 10, unit: 'SECONDS'
+        echo "My Name is ${name}"
+        echo "I live in ${place}"
+        echo "Build number is ${BUILD_NUMBER}"
+        echo "Greeting is ${params.Greeting}"
+      }
+    }
+    
+    stage('Terraform') {
+      steps {
+        sh 'terraform version'
+        echo "My Name is ${name}"
+        //echo "I live in ${place}"
+        echo "Job name is ${JOB_NAME}"
+        echo "Workspace path is ${WORKSPACE}"
+        sh 'exit 1'
+      }
+    }
+  
+  }
+  post {
+    always {
+      sh 'echo Always'
+    }
+    failure {
+      sh 'echo Failure'
+    }
+    success {
+      sh 'echo Success'
+    }
+  }
+}
