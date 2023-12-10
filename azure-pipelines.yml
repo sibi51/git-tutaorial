@@ -10,10 +10,10 @@ pool:
   name: 'devops-demo'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: echo Hello, SinSibibi!
+  displayName: 'Run a script'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  displayName: 'Run a two line script'
