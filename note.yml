@@ -1,0 +1,19 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- Azure-cloud
+
+pool:
+  name: 'devops-demo'
+
+steps:
+- script: echo Hello, Hey Azure How are you!
+  displayName: 'Run a script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a Multi line script'
