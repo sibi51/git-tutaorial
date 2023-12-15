@@ -1,0 +1,13 @@
+trigger:
+- Azure-cloud
+
+pool:
+  name: 'devops-demo'
+
+steps:
+- script: echo Hello, Hey Azure How are you!
+  displayName: 'Run a script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+  displayName: 'Run a Multi line script'
